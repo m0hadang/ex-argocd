@@ -5,4 +5,4 @@ server:
       nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
       nginx.ingress.kubernetes.io/ssl-passthrough: "true"
     ingressClassName: nginx
-    hostname: "mohadang.com"
+    hostname: "mohadang.argocd.com"
