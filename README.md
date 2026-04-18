@@ -6,6 +6,8 @@
 ### state
 - target state : git repo
 - live state : deployed resources
+- overwrite state : overwrite value
+  - not same git repo status but not OutOfSync. it is Sync status.
 
 ### test git repo
 
