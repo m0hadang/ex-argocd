@@ -9,6 +9,13 @@
 - overwrite state : overwrite value
   - not same git repo status but not OutOfSync. it is Sync status.
 
+### change application parameter(overwrite state)
+- if i change param value in argocd ui, then "parameters" will be added to application yaml
+- can overwrite value without OutOfSync
+  - **argocd on cluster and git-repo can be different even if Sync status**
+  - **through this, git-repo is not a perfect source of truth**
+
+
 ### test git repo
 
 - https://github.com/m0hadang/test-argocd.git
