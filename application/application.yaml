@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: application-from-scratch
+spec:
+  destination: # destination that my application be deployed
+    namespace: default
+    server: https://kubernetes.default.svc # target cluster
+  project: default # consisting multiple application
+  source: 
+    path: helm/nginx
+    repoURL: https://github.com/m0hadang/test-argocd.git
+    targetRevision: main
