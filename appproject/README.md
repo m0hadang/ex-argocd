@@ -40,7 +40,10 @@ restrict-project   12
 
 ```
 
-root@controller:~/argocd/appproject/restrict-destinations# k get apps
+### listing apps
+
+```
+k get apps
 NAME                       SYNC STATUS   HEALTH STATUS
 application-directory      Synced        Healthy
 application-from-scratch   Synced        Healthy
@@ -81,3 +84,4 @@ Events:
   ----    ------           ----  ----                           -------
   Normal  ResourceUpdated  23s   argocd-application-controller  Updated sync status:  -> Unknown
   Normal  ResourceUpdated  23s   argocd-application-controller  Updated health status:  -> Unknown
+```
