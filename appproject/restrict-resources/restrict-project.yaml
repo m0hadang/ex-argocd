@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: restrict-project
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+  - group: ''
+    kind: 'Namespace'
+  namespaceResourceBlacklist:
+  # namespaceResourceWhitelist:
+  # - group: '' # if v1 then no need to set
+  #   kind: 'ServiceAccount'
+  - group: 'apps'
+    kind: 'Deployment'
+  destinations:
+  - namespace: '*'
+    server: '*'
+  sourceRepos:
+  - '*'

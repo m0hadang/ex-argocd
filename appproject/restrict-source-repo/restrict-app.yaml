@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: restrict-app
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: restrict-project
+  source: 
+    path: v03-argocd-applications/helm/nginx
+    repoURL: https://github.com/devopshobbies/argocd-tutorial.git
+    # path: helm/nginx
+    # repoURL: https://github.com/m0hadang/test-argocd.git
+    targetRevision: main

@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: restrict-project
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: '*'
+    server: '*'
+  sourceRepos:
+  # whitelist method
+  # - 'https://github.com/m0hadang/test-argocd.git'
+
+  # blacklist method
+  - '!https://github.com/m0hadang/test-argocd.git'
+  - '*'

@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: role-project
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: '*'
+    server: '*'
+  sourceRepos:
+  - '*'
+  roles:
+  #- name: read-only
+  #  description: "this role can be used for reading application"
+  #  policies:
+  #  - p, proj:role-project:read-only, applications, get, role-project/*, allow
+#                                      RESOURCE, ACTION, OBJECT, PERMISSION
+  - name: read-sync
+    description: "this role can be used for reading/sync application"
+    policies:
+    - p, proj:role-project:read-sync, applications, get, role-project/*, allow
+    - p, proj:role-project:read-sync, applications, sync, role-project/*, allow
