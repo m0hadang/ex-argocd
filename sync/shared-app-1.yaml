@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: shared-app-1
+spec:
+  destination:
+    namespace: shared-app-ns
+    server: https://kubernetes.default.svc
+  project: default
+  source: 
+    path: directory-of-manifests
+    repoURL: https://github.com/m0hadang/test-argocd.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      enabled: true
+    syncOptions:
+      - FailOnSharedResource=true

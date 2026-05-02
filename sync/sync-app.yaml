@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: auto-sync-app
+spec:
+  destination:
+    namespace: auto-sync-app-ns
+    server: https://kubernetes.default.svc
+  project: default
+  source: 
+    path: directory-of-manifests
+    repoURL: https://github.com/m0hadang/test-argocd.git
+    targetRevision: main
+  syncPolicy:                   # auto-sync
+    automated: {}
+    #  prune: true       # auto sync
+    #  selfHeal: true    # prine resources
+    #  enabled: true     # self healk
+
+    syncOptions:
+      #- Replace=true
+      #- ApplyOutOfSyncOnly=true
+      - PruneLast=true
+      - CreateNamespace=true
+    managedNamespaceMetadata:
+      labels: # The labels to set on the application namespace
+        any: label
+        you: like
+      annotations: # The annotations to set on the application namespace
+        the: same
+        applies: for
+        annotations: on-the-namespace

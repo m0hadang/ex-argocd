@@ -15,6 +15,20 @@
   - **argocd on cluster and git-repo can be different even if Sync status**
   - **through this, git-repo is not a perfect source of truth**
 
+### ignore OutOfSync value
+- user input paramete
+  - undetermined value in a git repo
+  - will determin while on system operation
+  - ex) syncPolicy
+```
+  syncPolicy:
+      automated: {}             # not determined. can change gui.
+                                # ==> added some user input value
+```
+
+### argocd namespace
+- must deploy application onto argocd namespace
+  - if not, you can't see created application on gui
 
 ### test git repo
 
