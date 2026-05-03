@@ -42,3 +42,37 @@
 ```
 argocd login 192.168.189.77:8080 --insecure --grpc-web
 ```
+
+### tracking strategies
+
+- HELM
+  - specific chart version: ex) 1.16.1, ...
+  - range: ex) 1.2.*, ...
+  - latest version: *
+
+```
+spec:
+  project: default
+  source:
+    chart: sealed-secrets
+    targetRevision: 1.16.1 # chart version
+    helm:
+      releaseName: sealed-secrets
+    repoURL: https://bitnami-labs.github.io/sealed-secrets
+```
+
+- GIT
+  - branch: ex) HEAD, main, ...
+  - tag: ex) v1, ...
+  - commit: ex) 920fb41c0a747c127f41f12aa61d9715b57fa522, ...
+
+
+```
+spec:
+  project: default
+  source:
+    path: directory-of-manifests
+    repoURL: https://github.com/m0hadang/test-argocd.git
+    targetRevision: main # branch
+```
+
