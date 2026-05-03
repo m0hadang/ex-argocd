@@ -4,6 +4,7 @@
 2. wave
 3. resourece type
   - ... sa > sc > dp ...
+4. By Name
 
 ### phases priority
 
