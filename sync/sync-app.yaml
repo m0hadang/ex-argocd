@@ -13,9 +13,9 @@ spec:
     targetRevision: main
   syncPolicy:                   # auto-sync
     automated: {}
-    #  prune: true       # auto sync
-    #  selfHeal: true    # prine resources
-    #  enabled: true     # self healk
+    #  prune: true       # prune resource
+    #  selfHeal: true    # self heal
+    #  enabled: true     # auto sync
 
     syncOptions:
       #- Replace=true
