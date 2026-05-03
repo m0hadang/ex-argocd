@@ -15,8 +15,9 @@
   - **argocd on cluster and git-repo can be different even if Sync status**
   - **through this, git-repo is not a perfect source of truth**
 
-### ignore OutOfSync value
-- user input paramete
+### ignore OutOfSync
+- user input parameter
+  - user input parameter is not sync tracking target
   - undetermined value in a git repo
   - will determin while on system operation
   - ex) syncPolicy
@@ -25,6 +26,8 @@
       automated: {}             # not determined. can change gui.
                                 # ==> added some user input value
 ```
+- job
+  - the jos is not sync tracking target
 
 ### argocd namespace
 - must deploy application onto argocd namespace
