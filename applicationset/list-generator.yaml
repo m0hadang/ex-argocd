@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: list-generator
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - environment: local
+        url: https://kubernetes.default.svc
+        path: directory-of-manifests
+      - environment: external
+        url: https://kubernetes.default.svc
+        path: helm/nginx
+  template:
+    metadata:
+      name: '{{environment}}-application'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/m0hadang/test-argocd.git
+        targetRevision: main
+        # path: infra/{{path}}
+        path: '{{path}}'
+      destination:
+        server: '{{url}}'
+        namespace: '{{environment}}'
+      syncPolicy:
+        automated: {}
+        syncOptions:
+          - CreateNamespace=true

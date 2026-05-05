@@ -76,3 +76,27 @@ spec:
     targetRevision: main # branch
 ```
 
+### namespace matching
+
+- if target resource namespace is not matching with application, it will be fail
+
+```
+# application
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: auto-sync-app
+spec:
+  destination:
+    namespace: auto-sync-app-ns        # <-- should match
+    server: https://kubernetes.default.svc
+
+# target resourece
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment
+  namespace: my-app-namespace          # <-- should match
+```
+
+- "don't set namespace for target resource. just keep empty"

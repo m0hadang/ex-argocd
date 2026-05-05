@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: git-generator-dir-exclude
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/m0hadang/test-argocd.git
+      revision: main
+      directories:
+      - path: '*'
+      - path: sync-phases-waves
+        exclude: true
+  template:
+    metadata:
+      name: '{{path.basename}}-application'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/m0hadang/test-argocd.git
+        targetRevision: main
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{path.basename}}-ns'
+      syncPolicy:
+        automated: {}
+        syncOptions:
+          - CreateNamespace=true

@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: git-generator-file
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/m0hadang/test-argocd.git
+      revision: main
+      files:
+      - path: config/**/config.json
+  template:
+    metadata:
+      name: '{{cluster.name}}-application'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/m0hadang/test-argocd.git
+        targetRevision: main
+        path: '{{cluster.path}}'
+      destination:
+        server: '{{cluster.address}}'
+        namespace: '{{cluster.namespace}}'
+      syncPolicy:
+        automated: {}
+        syncOptions:
+          - CreateNamespace=true
